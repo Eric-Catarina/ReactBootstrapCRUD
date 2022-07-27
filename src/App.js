@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
+  const melhorDev =
+  [
+  {
+    "nome": "Éric",
+    "idade": 17,
+    "jogoFavorito": "League of Legends",
+    "tempoPuro": 101
+  },
+  {
+    "jogoFavorito": "Maplestory",
+    "nivelDeVicio": "Cocaina",
+    "amorPeloJogo": 0,
+    "tempoPuro": 200
+  }
+]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='mt-3'>
+      <ul className='list-group'>
+       {melhorDev.map(elementos => (
+        <li className='list-group-item'>Tempo puro de {elementos.jogoFavorito}: {elementos.tempoPuro} dias</li>
+       ))}
+      </ul>
     </div>
   );
+
+
+
+
 }
 
 export default App;
