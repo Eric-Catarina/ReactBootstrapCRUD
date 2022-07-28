@@ -1,48 +1,52 @@
-
 import { useState } from 'react';
 import './App.css';
 
 let initialState =
   [
     {
-      "id": 1,
+      
       "nomeDoJogo": "Maplestory",
       "addictionLevel": '5',
 
     },
     {
-      "id": 2,
+      
       "nomeDoJogo": "League of Legends",
       "addictionLevel": '4',
 
     },
     {
-      "id": 2,
-      "nomeDoJogo": "ROTMG",
+      
+      "nomeDoJogo": "Rimworld",
       "addictionLevel": '3',
 
     },
+    
     {
-      "id": 3,
+      
       "nomeDoJogo": "Dead Cells",
       "addictionLevel": '2',
 
     },
     {
-      "id": 4,
+      
       "nomeDoJogo": "Adofai",
       "addictionLevel": '1',
 
     },
     {
-      "id": 5,
+      
       "nomeDoJogo": "Undertale",
       "addictionLevel": '0',
 
     }
-    
-    
   ]
+  let id=0
+  for(let jogoAtual of initialState){
+    jogoAtual.id = id
+    id++
+  }
+  
 
 
 function App() {
@@ -62,7 +66,7 @@ function App() {
     jogos.push(jogo)
     console.log(jogos)
     setJogos([...jogos])
-   
+    document.getElementById('id').placeholder = jogo.id + 1
 
   }
 
@@ -101,32 +105,61 @@ function App() {
       default:
         return <i className="me-1 ms-1 fa-solid fa-question"></i>;
     }
-
-
-
-
-
-
   }
-
+  function corBordaAtual(valorVicio){
+    switch (valorVicio){
+      case '0':
+        return 'border-success border-2';
+      case '1': 
+        return 'border-info border-2';
+      case '2':
+        return 'border-primary border-2';
+      case '3': 
+        return 'border-warning border-3';
+      case '4': 
+        return 'border-danger border-3';
+      case '5':
+        return 'border-dark border-4';
+      default:
+        return 'border-secondary';
+    }
+  }
+  function corTextoAtual(valorVicio){
+    switch (valorVicio){
+      case '0':
+        return 'text-success';
+      case '1': 
+        return 'text-info';
+      case '2':
+        return 'text-primary';
+      case '3': 
+        return 'text-warning';
+      case '4': 
+        return 'text-danger';
+      case '5':
+        return 'text-dark';
+      default:
+        return 'text-secondary';
+    }
+  }
   
-
+  
   return (
     <>
-      <form className='row g-3 mt-3 '>
+      <form className='row g-3 mt-3'>
         <div className="row">
           <div className="col ">
             <label  className='form-label'>ID</label>
-            <input id="id" type="text" class="form-control" placeholder="ID" aria-label="First name" />
+            <input id="id" type="text" className="form-control" placeholder={jogos[jogos.length-1].id + 1} aria-label="First name" disabled/>
           </div>
           <div className="col">
             <label  className='form-label'>Game</label>
             <input id="gameName" type="text" className="form-control" placeholder="Game" aria-label="Last name" />
           </div>
 
-          <div class="col">
-    <label  class="form-label">Addiction Level</label>
-    <select id="addictionLevel" class="form-select">
+          <div className="col">
+    <label  className="form-label">Addiction Level</label>
+    <select id="addictionLevel" className="form-select">
       <option selected>Select</option>
       <option value={'0'}>0</option>
       <option value={'1'}>1</option>
@@ -136,9 +169,7 @@ function App() {
     </select>
   </div>
 
-          
-
-
+        
           <hr className='mt-3'></hr>
           <div className="col-12">
             <button onClick={adicionaJogoNaLista} type='button' className='btn btn-primary'>Enviar</button>
@@ -146,16 +177,14 @@ function App() {
         </div>
       </form>
 
-
-
       <div className='mt-3 '>
 
         {jogos.map(jogoAtual => (
 
+          
+          <div key={jogoAtual.id} className={"card mb-2 shadow border " + corBordaAtual(jogoAtual.addictionLevel)} >
 
-          <div key={jogoAtual.id} className="card mb-2 shadow" >
-
-            <div className="card-body">
+            <div className="card-body ">
               <div className='d-flex justify-content-between'>
                 <h5 className='card-title'>
 
@@ -166,7 +195,7 @@ function App() {
                 </h5>
                 <h6>
                   Addiction Level:
-                  <span className='ms-1 text-black'>
+                  <span className={'ms-1 '+corTextoAtual(jogoAtual.addictionLevel)}>
                     {insereEmojiVicio(jogoAtual.addictionLevel)}
                     {converteVicioNumeroEmNome(jogoAtual.addictionLevel)}
                   </span>
@@ -177,8 +206,8 @@ function App() {
 
               
               <div className='d-flex justify-content-end border-top pt-2 m-0'>
-                <button className='me-1 btn btn-sm btn-outline-primary'><i class="fa-solid fa-pen"></i> Edit</button>
-                <button className='ms-1 btn btn-sm btn-outline-danger'><i class="fa-solid fa-eraser"></i> Purify</button>
+                <button className='me-1 btn btn-sm btn-outline-primary'><i className="fa-solid fa-pen"></i> Edit</button>
+                <button className='ms-1 btn btn-sm btn-outline-danger'><i className="fa-solid fa-eraser"></i> Purify</button>
               </div>
 
             </div>
