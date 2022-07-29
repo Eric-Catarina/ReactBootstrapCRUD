@@ -3,6 +3,7 @@ import './App.css';
 
 let initialState =
   [
+   
     {
       
       "nomeDoJogo": "Maplestory",
@@ -41,7 +42,7 @@ let initialState =
 
     }
   ]
-  let id=0
+  let id=1
   for(let jogoAtual of initialState){
     jogoAtual.id = id
     id++
@@ -62,13 +63,23 @@ function App() {
       addictionLevel: document.getElementById('addictionLevel').value
     }
 
-    jogo.id = jogos[jogos.length -1].id +1
+    jogo.id = jogos.length + 1
     jogos.push(jogo)
     console.log(jogos)
     setJogos([...jogos])
     document.getElementById('id').placeholder = jogo.id + 1
 
   }
+
+
+
+  function deletaJogoDalista(id){
+    const jogosFiltrados = jogos.filter(jogo => jogo.id !== id)
+    console.log(jogosFiltrados)
+    setJogos([...jogosFiltrados])
+  }
+
+
 
   function converteVicioNumeroEmNome(valorVicio){
     switch (valorVicio){
@@ -150,7 +161,7 @@ function App() {
         <div className="row">
           <div className="col ">
             <label  className='form-label'>ID</label>
-            <input id="id" type="text" className="form-control" placeholder={jogos[jogos.length-1].id + 1} aria-label="First name" disabled/>
+            <input id="id" type="text" className="form-control" placeholder={jogos.length === 0 ? 0 : jogos.length + 1 } aria-label="First name" disabled/>
           </div>
           <div className="col">
             <label  className='form-label'>Game</label>
@@ -166,6 +177,7 @@ function App() {
       <option value={'2'}>2</option>
       <option value={'3'}>3</option>
       <option value={'4'}>4</option>
+      <option value={'5'}>5</option>
     </select>
   </div>
 
@@ -178,7 +190,7 @@ function App() {
       </form>
 
       <div className='mt-3 '>
-
+      
         {jogos.map(jogoAtual => (
 
           
@@ -202,12 +214,9 @@ function App() {
                 </h6>
 
               </div>
-
-
-              
               <div className='d-flex justify-content-end border-top pt-2 m-0'>
                 <button className='me-1 btn btn-sm btn-outline-primary'><i className="fa-solid fa-pen"></i> Edit</button>
-                <button className='ms-1 btn btn-sm btn-outline-danger'><i className="fa-solid fa-eraser"></i> Purify</button>
+                <button onClick={() => deletaJogoDalista(jogoAtual.id)} className='ms-1 btn btn-sm btn-outline-danger'><i className="fa-solid fa-hand-holding-medical"></i> Purify</button>
               </div>
 
             </div>
