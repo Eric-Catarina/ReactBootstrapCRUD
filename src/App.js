@@ -63,7 +63,7 @@ function App() {
       addictionLevel: document.getElementById('addictionLevel').value
     }
 
-    jogo.id = jogos.length + 1
+    jogo.id = jogos[jogos.length - 1].id + 1
     jogos.push(jogo)
     console.log(jogos)
     setJogos([...jogos])
