@@ -50,8 +50,6 @@ let initialState =
     id++
   }
   
-
-
 function App() {
   const [jogos, setJogos] = useState(initialState)
 
@@ -65,7 +63,10 @@ function App() {
       addictionLevel: document.getElementById('addictionLevel').value
     }
 
-    jogo.id = jogos.length + 1
+    
+
+    jogo.id = id
+    id ++
     jogos.push(jogo)
     console.log(jogos)
     setJogos([...jogos])
@@ -73,15 +74,12 @@ function App() {
 
   }
 
-
-
-  
-  
   return (
     <>
       <JogoForm 
       jogos={jogos}
       adicionaJogoNaLista = {adicionaJogoNaLista}
+      id = {id}
       />
       <div className='mt-3 '>
   
@@ -90,12 +88,7 @@ function App() {
             jogoAtual = {jogoAtual}
             jogos = {jogos}
             setJogos = {setJogos}
-
-
           />
-
-          
-          
         ))}
       </div>
     </>

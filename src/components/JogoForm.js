@@ -6,7 +6,7 @@ export default function JogoForm(properties) {
         <div className="row">
           <div className="col ">
             <label  className='form-label'>ID</label>
-            <input id="id" type="text" className="form-control" placeholder={properties.jogos.length === 0 ? 0 : properties.jogos.length + 1 } aria-label="First name" disabled/>
+            <input id="id" type="text" className="form-control" placeholder={properties.id} aria-label="First name" disabled/>
           </div>
           <div className="col">
             <label  className='form-label'>Game</label>
