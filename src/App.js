@@ -63,7 +63,7 @@ function App() {
       addictionLevel: document.getElementById('addictionLevel').value
     }
 
-    jogo.id = jogos[jogos.length - 1].id + 1
+    jogo.id = jogos.length + 1
     jogos.push(jogo)
     console.log(jogos)
     setJogos([...jogos])
@@ -172,12 +172,12 @@ function App() {
     <label  className="form-label">Addiction Level</label>
     <select id="addictionLevel" className="form-select">
       <option selected>Select</option>
-      <option value={'0'}>0</option>
-      <option value={'1'}>1</option>
-      <option value={'2'}>2</option>
-      <option value={'3'}>3</option>
-      <option value={'4'}>4</option>
-      <option value={'5'}>5</option>
+      <option value={'0'}>None</option>
+      <option value={'1'}>Low</option>
+      <option value={'2'}>Medium</option>
+      <option value={'3'}>Dangerous</option>
+      <option value={'4'}>Deadly</option>
+      <option value={'5'}><b>Soul Sucker</b></option>
     </select>
   </div>
 
