@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import JogoForm from './components/JogoForm';
-import JogoCard from './components/JogoCard';
+
+import JogosLista from './components/JogosLista';
 
 let initialState =
   [
@@ -51,8 +52,23 @@ let initialState =
   }
   
 function App() {
-  const [jogos, setJogos] = useState(initialState)
+  const [jogos, setJogos] = useState(initialState);
+  const [jogoAlvo, setJogo] = useState({});
 
+
+  function deletaJogoDaLista(id) {
+    const jogosFiltrados = jogos.filter(jogo => jogo.id !== id)
+    
+    setJogos([...jogosFiltrados])
+  }
+
+  function editarJogo(id){
+    const jogoAlvo = jogos.filter(jogo => jogo.id === id)
+    setJogo(jogoAlvo[0])
+
+    console.log(jogoAlvo)
+    
+  }
 
   function adicionaJogoNaLista(evento) {
     evento.preventDefault()
@@ -68,7 +84,7 @@ function App() {
     jogo.id = id
     id ++
     jogos.push(jogo)
-    console.log(jogos)
+    
     setJogos([...jogos])
     document.getElementById('id').placeholder = jogo.id + 1
 
@@ -80,17 +96,15 @@ function App() {
       jogos={jogos}
       adicionaJogoNaLista = {adicionaJogoNaLista}
       id = {id}
+      jogoAlvo = {jogoAlvo}
       />
-      <div className='mt-3 '>
-  
-        {jogos.map(jogoAtual => (
-          <JogoCard 
-            jogoAtual = {jogoAtual}
-            jogos = {jogos}
-            setJogos = {setJogos}
-          />
-        ))}
-      </div>
+      <JogosLista
+          deletaJogoDaLista = {deletaJogoDaLista}
+          editarJogo = {editarJogo}
+          jogos = {jogos}
+          setJogos={setJogos}
+          setJogo={setJogo}
+      />
     </>
   );
 }

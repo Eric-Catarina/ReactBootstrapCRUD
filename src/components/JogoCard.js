@@ -1,12 +1,5 @@
 
-
 export default function JogoCard(properties) {
-
-  function deletaJogoDalista(id) {
-    const jogosFiltrados = properties.jogos.filter(jogo => jogo.id !== id)
-    console.log(jogosFiltrados)
-    properties.setJogos([...jogosFiltrados])
-  }
 
 
 
@@ -107,8 +100,8 @@ function corTextoAtual(valorVicio) {
 
       </div>
       <div className='d-flex justify-content-end border-top pt-2 m-0'>
-        <button className='me-1 btn btn-sm btn-outline-primary'><i className="fa-solid fa-pen"></i> Edit</button>
-        <button onClick={() => deletaJogoDalista(properties.jogoAtual.id)} className='ms-1 btn btn-sm btn-outline-danger'><i className="fa-solid fa-hand-holding-medical"></i> Purify</button>
+        <button onClick={() => properties.editarJogo(properties.jogoAtual.id)} className='me-1 btn btn-sm btn-outline-primary'><i className="fa-solid fa-pen"></i> Edit</button>
+        <button onClick={() => properties.deletaJogoDaLista(properties.jogoAtual.id)} className='ms-1 btn btn-sm btn-outline-danger'><i className="fa-solid fa-hand-holding-medical"></i> Purify</button>
       </div>
 
     </div>
